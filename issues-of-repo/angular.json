@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "issues-of-repo"
+  "defaultProject": "issues-of-repo",
+  "cli": {
+    "analytics": "3770bc60-d586-4bca-b41d-e7f512333624"
+  }
 }

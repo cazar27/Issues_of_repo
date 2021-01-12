@@ -1,1 +1,13 @@
-<p>form-url-repo works!</p>
+<div class="container">
+  <h2>Enter the URL of your repository</h2>
+  <form class="form" autocomplite="off" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group mx-sm-3 mb-2 pt-5">
+      <label class="formGroupExampleInput" for="url">Enter the url of the repo to issues analyze</label>
+      <input formControlName="url" class="form-control" type="url" id="url" placeholder="Your url repo" aria-placeholder="Your url repo">
+    </div>
+    <div *ngIf="validUrl" class="alert alert-danger mx-sm-3">
+      <pre>The url must have 8 chars minimum</pre>
+    </div>
+    <button type="submit" [disabled]="!form.valid" class="btn btn-primary mb-2 mx-sm-3 mt-1 mb-3">Find Issues</button>
+  </form>
+</div>

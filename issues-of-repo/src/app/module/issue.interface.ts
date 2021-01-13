@@ -1,5 +1,8 @@
-export issue IssueInterface {
-  name: string;
-  category: string;
-  description: string;
+export interface IssueInterface {
+  title: string;
+  html_url: string;
+  body: string;
+  created_at: string;
+  label: string;
+  state: string
 }

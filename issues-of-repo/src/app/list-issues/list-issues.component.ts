@@ -12,7 +12,7 @@ export class ListIssuesComponent implements OnInit {
   page:number =  1;
   url: string = "https://api.github.com/repos/recharts/recharts";
   issues:IssueInterface[] = new Array;
-  pagination:IssueInterface[] = new Array;
+  pagination:number[] = new Array(3);
 
   constructor(private issuesService: IssueslistService) { }
 

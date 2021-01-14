@@ -6,7 +6,7 @@ import { IssueInterface } from '../module/issue.interface';
   providedIn: 'root'
 })
 export class IssueslistService {
-  private urlBase = "https://api.github.com/repos/recharts/recharts/issues";
+  private urlBase = "";
 
   constructor(private http: HttpClient) { }
 

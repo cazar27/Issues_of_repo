@@ -6,11 +6,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FormUrlRepoComponent } from './form-url-repo/form-url-repo.component';
+import { FooterComponent } from './footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FormUrlRepoComponent
+    FormUrlRepoComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

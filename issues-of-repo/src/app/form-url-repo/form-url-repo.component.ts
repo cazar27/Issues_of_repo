@@ -9,11 +9,12 @@ import { IssueslistService } from '../services/issueslist.service';
 })
 export class FormUrlRepoComponent implements OnInit {
   form: FormGroup;
-  url = "";
+  url: string = "";
   listIssues: IssueInterface[] = [];
-  page = 1;
-  count = 0;
-  tableSize = 7;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 7;
+  onSubmitForm: boolean = false;
 
   constructor(private fb: FormBuilder, private service: IssueslistService) {
     this.form = this.fb.group({
@@ -35,8 +36,8 @@ export class FormUrlRepoComponent implements OnInit {
     stringUrl = stringUrl.replace('https://github.com/', 'https://api.github.com/repos/');
     stringUrl = stringUrl + '/issues';
     this.url = stringUrl;
+    this.onSubmitForm = true;
     this.getIssues();
-    console.log(stringUrl);
   }
 
   get validUrl() {
@@ -61,6 +62,5 @@ export class FormUrlRepoComponent implements OnInit {
   getIssues(): void {
     this.service.getIssues(this.url).subscribe(issue => this.listIssues = issue);
   }
-
 
 }

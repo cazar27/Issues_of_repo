@@ -35,4 +35,8 @@ Run `npm i` in the contain folder of projects in this case is issues-of-repo
 
 ## Requeriments
 
-You need install [node](https://nodejs.org/es/) and [Angular cli](https://cli.angular.io/)
+Require install [node](https://nodejs.org/es/) and [Angular cli](https://cli.angular.io/)
+
+## Test Deploy Hosting 
+
+Deploy with firebase hosting [issues-of-repo.web.app/](https://issues-of-repo.web.app/)

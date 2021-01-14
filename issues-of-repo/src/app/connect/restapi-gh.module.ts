@@ -10,7 +10,7 @@ import { Octokit } from "@octokit/core";
 
 export class RestapiGHModule {
 
-  public async callData(owner:string, repo: string) {
+  public async callData(owner: string, repo: string) {
     const octokit = new Octokit({
       auth: `336c187507160d2132b91f2131ae6249d9a4710f`,
       baseUrl: "https://github.acme-inc.com/api/v3",

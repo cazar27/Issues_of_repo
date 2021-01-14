@@ -9,15 +9,15 @@ import { IssueslistService } from '../services/issueslist.service';
 })
 export class FormUrlRepoComponent implements OnInit {
   form: FormGroup;
-  url ="";
+  url = "";
   listIssues: IssueInterface[] = [];
   page = 1;
   count = 0;
   tableSize = 7;
 
-  constructor( private fb: FormBuilder, private service: IssueslistService ) {
+  constructor(private fb: FormBuilder, private service: IssueslistService) {
     this.form = this.fb.group({
-      url: ['',  [Validators.required,Validators.minLength(6)] ]
+      url: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
@@ -28,11 +28,11 @@ export class FormUrlRepoComponent implements OnInit {
   onSubmit() {
     const url: any = this.form.get('url');
     let stringUrl = String(url.value);
-    const start = stringUrl.substr(0,4);
-    if(start.localeCompare('http')) {
+    const start = stringUrl.substr(0, 4);
+    if (start.localeCompare('http')) {
       stringUrl = 'https://' + stringUrl;
     }
-    stringUrl = stringUrl.replace('https://github.com/','https://api.github.com/repos/');
+    stringUrl = stringUrl.replace('https://github.com/', 'https://api.github.com/repos/');
     stringUrl = stringUrl + '/issues';
     this.url = stringUrl;
     this.getIssues();
@@ -43,11 +43,11 @@ export class FormUrlRepoComponent implements OnInit {
     return this.form.get('url')?.invalid && this.form.get('url')?.updateOn
   }
 
-  getUrl (): string {
+  getUrl(): string {
     return this.form.get('url')?.value;
   }
 
-  onTableDataChange(event: number){
+  onTableDataChange(event: number) {
     this.page = event;
     this.getIssues();
   }
@@ -58,8 +58,8 @@ export class FormUrlRepoComponent implements OnInit {
     this.getIssues();
   }
 
-  getIssues():void{
-    this.service.getIssues(this.url).subscribe(issue => this.listIssues = issue );
+  getIssues(): void {
+    this.service.getIssues(this.url).subscribe(issue => this.listIssues = issue);
   }
 
 

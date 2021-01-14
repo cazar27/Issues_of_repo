@@ -10,7 +10,7 @@ export class IssueslistService {
 
   constructor(private http: HttpClient) { }
 
-  getIssues(urlRepo:string): Observable<IssueInterface[]> {
+  getIssues(urlRepo: string): Observable<IssueInterface[]> {
     return this.http.get<IssueInterface[]>(urlRepo);
   }
 

@@ -25,3 +25,14 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Clone repository
+
+execute gitbash the next command `git clone https://github.com/cazar27/Issues_of_repo.git`
+## Init aplication
+
+Run `npm i` in the contain folder of projects in this case is issues-of-repo
+
+## Requeriments
+
+You need install [node](https://nodejs.org/es/) and [Angular cli](https://cli.angular.io/)

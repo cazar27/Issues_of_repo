@@ -2,7 +2,7 @@
   <h2 class="pt-5 mx-3">Provide URL of your repository</h2>
   <form class="form" autocomplite="off" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form-group mx-sm-3 mb-2 pt-5">
-      <label class="formGroupExampleInput" for="url">Provide url of the repo to issues analyze</label>
+      <label class="formGroupExampleInput" for="url">Provide url of the repo to issues analyze, for example: <code>https://github.com/recharts/recharts</code> </label>
       <input formControlName="url" class="form-control" type="url" id="url" placeholder="Your url repo" aria-placeholder="Your url repo">
     </div>
     <div *ngIf="validUrl" class="alert alert-danger mx-sm-3">
@@ -11,3 +11,43 @@
     <button type="submit" [disabled]="!form.valid" class="btn btn-primary mb-2 mx-sm-3 mt-1 mb-3">Find Issues</button>
   </form>
 </div>
+<div *ngIf="(form.valid && listIssues.length>0) else loading">
+  <div class="container">
+    <table class="table table-striped">
+      <thead>
+        <tr *ngIf="listIssues.length > 0">
+            <td><h4>Id</h4></td>
+            <td><h4>State</h4></td>
+            <td><h4>Title</h4></td>
+            <td><h4>Created At</h4></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of listIssues | paginate : {
+            itemsPerPage: tableSize,
+            currentPage: page,
+            totalItems: count
+          }">
+          <td>{{item.id}}</td>
+          <td>{{item.state}}</td>
+          <td>{{item.title}}</td>
+          <td>{{item.created_at}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-center">
+    <pagination-controls  *ngIf="listIssues.length > 0"
+      previousLabel="Prev"
+      nextLabel="Next"
+      (pageChange)="onTableDataChange($event)">
+    </pagination-controls>
+  </div>
+</div>
+<ng-template #loading>
+  <div class="container">
+    <div class="mx-sm-3 py-3">
+      <h4 class="text-danger">Failed request, maybe the url is not a corret url reposisitory</h4>
+    </div>
+  </div>
+</ng-template>

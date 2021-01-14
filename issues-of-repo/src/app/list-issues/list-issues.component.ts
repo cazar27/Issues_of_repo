@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { IssueInterface } from '../module/issue.interface';
 import { IssueslistService } from '../services/issueslist.service';
 
@@ -9,26 +9,12 @@ import { IssueslistService } from '../services/issueslist.service';
 })
 export class ListIssuesComponent implements OnInit {
 
-  page:number =  1;
-  url: string = "https://api.github.com/repos/recharts/recharts";
-  issues:IssueInterface[] = new Array;
-  pagination:number[] = new Array(3);
-
   constructor(private issuesService: IssueslistService) { }
 
+  @Input()
+  listIssues: IssueInterface[] = [];
+
   ngOnInit(): void {
-    this.getIssues(this.url);
-  }
-
-  getIssues(url: string,page?: string): void {
-
-    this.issuesService.getIssues(url)
-    .subscribe(issues => this.issues = issues);
-
-  }
-
-  setPage(pageIn: number) {
-    this.page = pageIn;
   }
 
 }

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Octokit } from "@octokit/core";
-
 @NgModule({
   declarations: [],
   imports: [
@@ -24,5 +23,4 @@ export class RestapiGHModule {
 
     return response.data;
   }
-
 }

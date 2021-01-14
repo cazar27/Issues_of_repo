@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-
+import { HttpClientModule } from '@angular/common/http'
+import { NgxPaginationModule } from 'ngx-pagination';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FormUrlRepoComponent } from './form-url-repo/form-url-repo.component';
@@ -16,14 +16,15 @@ import { environment } from '../environments/environment';
     AppComponent,
     HeaderComponent,
     FormUrlRepoComponent,
-    ListIssuesComponent
+    ListIssuesComponent,
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

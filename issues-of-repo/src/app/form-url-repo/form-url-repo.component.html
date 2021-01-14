@@ -10,7 +10,7 @@
     <div *ngIf="onSubmitForm && validUrl" class="alert alert-danger mx-sm-3">
       <small>The url must have 6 chars minimum</small>
     </div>
-    <button formControlName="btnSubmit" type="submit" [disabled]="!form.valid" class="btn btn-primary mb-2 mx-sm-3 mt-1 mb-3">Find Issues</button>
+    <button type="submit" [disabled]="!form.valid" class="btn btn-success mb-2 mx-sm-3 px-5 mt-1 mb-3 w-xs-100">Find Issues</button>
   </form>
   <div *ngIf="(form.valid && listIssues.length>0) else loading">
     <div class="container">
@@ -53,7 +53,7 @@
   </div>
   <ng-template #loading>
     <div class="container">
-      <div class="mx-sm-3 py-3">
+      <div>
         <h4 class="text-danger">Failed request, maybe the url is not a corret url reposisitory</h4>
       </div>
     </div>

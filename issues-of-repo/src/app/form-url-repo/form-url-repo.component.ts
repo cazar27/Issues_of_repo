@@ -13,7 +13,7 @@ export class FormUrlRepoComponent implements OnInit {
   listIssues: IssueInterface[] = [];
   page: number = 1;
   count: number = 0;
-  tableSize: number = 7;
+  tableSize: number = 5;
   onSubmitForm: boolean = false;
 
   constructor(private fb: FormBuilder, private service: IssueslistService) {
@@ -37,6 +37,7 @@ export class FormUrlRepoComponent implements OnInit {
     stringUrl = stringUrl + '/issues';
     this.url = stringUrl;
     this.onSubmitForm = true;
+    this.page = 1;
     this.getIssues();
   }
 

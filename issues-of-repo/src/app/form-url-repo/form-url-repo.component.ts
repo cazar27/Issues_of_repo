@@ -15,6 +15,8 @@ export class FormUrlRepoComponent implements OnInit {
   count: number = 0;
   tableSize: number = 5;
   onSubmitForm: boolean = false;
+  responseMessage: string = '';
+  responseError: boolean = false;
 
   constructor(private fb: FormBuilder, private service: IssueslistService) {
     this.form = this.fb.group({
@@ -26,19 +28,24 @@ export class FormUrlRepoComponent implements OnInit {
 
   }
 
-  onSubmit() {
+  onSubmit(): void {
     const url: any = this.form.get('url');
     let stringUrl = String(url.value);
+    this.validateForm(stringUrl);
+  }
+
+  validateForm(stringUrl: string): void {
+
     const start = stringUrl.substr(0, 4);
     if (start.localeCompare('http')) {
       stringUrl = 'https://' + stringUrl;
     }
-    stringUrl = stringUrl.replace('https://github.com/', 'https://api.github.com/repos/');
-    stringUrl = stringUrl + '/issues';
+    stringUrl = stringUrl.replace('https://github.com/', 'https://api.github.com/repos/') + '/issues';
     this.url = stringUrl;
     this.onSubmitForm = true;
     this.page = 1;
     this.getIssues();
+
   }
 
   get validUrl() {
@@ -49,7 +56,7 @@ export class FormUrlRepoComponent implements OnInit {
     return this.form.get('url')?.value;
   }
 
-  onTableDataChange(event: number) {
+  onTableDataChange(event: number): void {
     this.page = event;
     this.getIssues();
   }
@@ -61,7 +68,13 @@ export class FormUrlRepoComponent implements OnInit {
   }
 
   getIssues(): void {
-    this.service.getIssues(this.url).subscribe(issue => this.listIssues = issue);
+
+    this.service.getIssues(this.url).subscribe(
+      res => this.listIssues = res,
+      err => { this.responseError = true; this.responseMessage = err.statusText },
+      () => this.responseError = false
+    );;
+
   }
 
 }

@@ -10,52 +10,58 @@
     <div *ngIf="onSubmitForm && validUrl" class="alert alert-danger mx-sm-3">
       <small>The url must have 6 chars minimum</small>
     </div>
-    <button type="submit" [disabled]="!form.valid" class="btn btn-success mb-2 mx-sm-3 px-5 mt-1 mb-3 w-xs-100">Find Issues</button>
+    <button type="submit" [disabled]="!form.valid" class="btn btn-success mb-2 mx-sm-3 px-5 mt-1 mb-3 w-xs-100">Find
+      Issues</button>
   </form>
-  <div *ngIf="(form.valid && listIssues.length>0) else loading">
-    <div class="container">
-      <table class="table table-striped">
-        <thead>
-          <tr *ngIf="listIssues.length > 0">
-            <td>
-              <h4>Id</h4>
-            </td>
-            <td>
-              <h4>State</h4>
-            </td>
-            <td>
-              <h4>Title</h4>
-            </td>
-            <td>
-              <h4>Created</h4>
-            </td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of listIssues | paginate : {
-              itemsPerPage: tableSize,
-              currentPage: page,
-              totalItems: count
-            }">
-            <td>{{item.id}}</td>
-            <td>{{item.state}}</td>
-            <td>{{item.title}}</td>
-            <td>{{item.created_at | date:'dd/MM/yy'}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="d-flex justify-content-center">
-      <pagination-controls *ngIf="listIssues.length > 0" previousLabel="Prev" nextLabel="Next"
-        (pageChange)="onTableDataChange($event)">
-      </pagination-controls>
-    </div>
-  </div>
-  <ng-template #loading>
-    <div class="container">
-      <div>
-        <h4 class="text-danger">Failed request, maybe the url is not a corret url reposisitory</h4>
+  <div *ngIf="(!responseError) else error">
+    <div *ngIf="(form.valid && listIssues.length>0) else empty">
+      <div class="container">
+        <table class="table table-striped">
+          <thead>
+            <tr *ngIf="listIssues.length > 0">
+              <td>
+                <h4>Id</h4>
+              </td>
+              <td>
+                <h4>State</h4>
+              </td>
+              <td>
+                <h4>Title</h4>
+              </td>
+              <td>
+                <h4>Created</h4>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of listIssues | paginate : {
+                itemsPerPage: tableSize,
+                currentPage: page,
+                totalItems: count
+              }">
+              <td>{{item.id}}</td>
+              <td>{{item.state}}</td>
+              <td>{{item.title}}</td>
+              <td>{{item.created_at | date:'dd/MM/yy'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="d-flex justify-content-center">
+        <pagination-controls *ngIf="listIssues.length > 0" previousLabel="Prev" nextLabel="Next"
+          (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
       </div>
     </div>
-  </ng-template>
+    <ng-template #empty>
+      <div class="container">
+        <h4 class="text-danger">The repository don´t have issues</h4>
+      </div>
+    </ng-template>
+  </div>
 </div>
+<ng-template #error>
+  <div class="container">
+    <h4 class="text-danger">{{responseMessage}}</h4>
+  </div>
+</ng-template>
